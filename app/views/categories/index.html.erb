@@ -1,0 +1,63 @@
+<p class="lead"><italic><h2>Listing Classes</h2></italic></p>
+  <table class="table table-striped">
+    <thead>
+  <tr>
+    <th>Name</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+      </thead>
+      <tbody>
+      
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= link_to 'Show', category %></td>
+    <td><%= link_to 'Edit', edit_category_path(category), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModel3'} %></td>
+    <td><%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+          </tbody>
+</table>
+<br />
+<div class="pager">
+<%= will_paginate @categories, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
+    <button type="submit" id="new_class" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-sm side1" >New Class</button>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Class</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for Category.new do |f| %>
+          
+               <div class="field form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name ,:class => 'form-control', :required => true %>
+  </div>
+  <div class="actions ">
+    <%= f.submit "Create Class",:class => 'form-control btn btn-primary btn-sm' %>   
+  </div>
+          
+          <% end %>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+<div id="myModel3" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>

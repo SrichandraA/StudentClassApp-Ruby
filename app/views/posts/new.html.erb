@@ -1,0 +1,28 @@
+<div class="container">
+    <p class="lead"><italic><h2>Adding Student</h2></italic></p>
+<br>
+    <%= form_for @post do |f| %>
+<p class="form-group">
+<%= f.label :name %><br>
+    <%= f.text_field :name, :class => 'form-control' ,:required => true %><br>
+    
+
+</p>
+<p class="form-group">
+<%= f.label :email %><br>
+    <%= f.text_field :section, :class => 'form-control',:required => true %><br>
+    
+
+
+</p>
+<p class="form-group">
+    <%= f.label :Class %><br>
+<%= f.select :category_id, Category.all.collect { |x| [x.name, x.id]},{:include_blank => "select One"},:class => 'form-control',:required => true %> <br>
+
+
+</p>
+<p class="form-group">
+<%= f.submit "Add Student",:class => 'form-control btn btn-primary btn-sm' %>
+</p>
+<% end %>
+    </div>
